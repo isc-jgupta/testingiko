@@ -1,10 +1,12 @@
-# Steps to configure SCO EKS Cluster
+# Configuring SCO Topology using IKO 
+
+## Steps to configure SCO EKS Cluster
 
 1. Setting up EKS Cluster (Can be modified to work on other cloud services)
 2. Installing IKO
 3. Modifying IRISCluster and IRISService
 
-# Prerequisites
+## Prerequisites
 
 1. The following libraries in your terminal:
        eksctl
@@ -14,7 +16,7 @@
 2. ICR (InterSystems Container Registry) access
 3. An IRIS key
 
-# Setting up EKS Cluster
+## Setting up EKS Cluster
 
 Make sure to edit the eks-cluster.yaml according to the comments. Once done, you can run the following command
 
@@ -22,14 +24,18 @@ Make sure to edit the eks-cluster.yaml according to the comments. Once done, you
 eksctl create cluster -f eks-cluster.yaml
 ```
 
-## Create a Kubernetes Secret with your InterSystems Container Registry credentials
+The cluster by default creates a [gp2 storage class](https://aws.amazon.com/ebs/volume-types/#:~:text=gp2%20is%20the%20default%20EBS,interactive%20applications%2C%20and%20boot%20volumes) which should be sufficient for most operations. 
 
-(You can skip this step if you're using the IRIS Community Edition)
+You can check the status of the cluster creation by looking at the status in the AWS management portal.
 
-We'll need to download the IRIS container from ICR, which means we need credentials installed in Kubernetes.  The username and password used here are the same as when you installed IKO, but we'll install the secret in the default namespace and name it slightly differently.
+## Installing IKO
+
+We'll need to download the IRIS container from ICR, which means we need credentials installed in Kubernetes. The IKO pods will be created within the IKO namespace.
 
 ```
-kubectl create secret docker-registry icr-secret --docker-server=https://containers.intersystems.com/v2/ --docker-username <YOUR USERNAME> --docker-password='<YOUR PASSWORD>' --docker-email=<YOUR EMAIL>
+kubectl create namespace iko
+kubectl create secret docker-registry dockerhub-secret -n iko --docker-server=https://containers.intersystems.com/v2/ --docker-username <YOUR USERNAME> --docker-password='<YOUR PASSWORD>'
+helm install intersystems chart/iris-operator -n iko
 ```
 
 ## Create a secret with your IRIS license key
