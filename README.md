@@ -4,7 +4,7 @@
 2. Installing IKO
 3. Modifying IRISCluster and IRISService
 
-## Prerequisites
+# Prerequisites
 
 1. The following libraries in your terminal:
        eksctl
@@ -14,8 +14,13 @@
 2. ICR (InterSystems Container Registry) access
 3. An IRIS key
 
-## Setting up EKS Cluster
+# Setting up EKS Cluster
 
+Make sure to edit the eks-cluster.yaml according to the comments. Once done, you can run the following command
+
+```
+eksctl create cluster -f eks-cluster.yaml
+```
 
 ## Create a Kubernetes Secret with your InterSystems Container Registry credentials
 
