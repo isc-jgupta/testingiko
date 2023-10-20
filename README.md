@@ -2,7 +2,17 @@
 
 1. Setting up EKS Cluster (Can be modified to work on other cloud services)
 2. Installing IKO
-3. Modifying IRISCluster and IRISService 
+3. Modifying IRISCluster and IRISService
+
+## Prerequisites
+
+1. The following libraries in your terminal:
+       eksctl
+       kubectl
+       AWS CLI
+       helm
+2. ICR (InterSystems Container Registry) access
+3. An IRIS key
 
 ## Setting up EKS Cluster
 
