@@ -78,5 +78,26 @@ kubectl apply -f IrisCluster.yaml
 kubectl apply -f IrisService.yaml
 ```
 
-## Further Reading
-* https://docs.intersystems.com/components/csp/docbook/DocBook.UI.Page.cls?KEY=AIKO#AIKO_clusterdef_configSource_csp
+# Issues that were resolved and have yet to be resolved
+
+## Resolved
+
+Problem: Persistent Volumes were not being created in the AWS Portal <br />
+Solution: Using the EKS Cluster definition allowed for the creation of PVs dynamically<br />
+
+Problem: Data Pods were not being mirrored (having mirror param config issues during container setup within the pods<br />
+Solution: Using IRIS Version 2023.1.1.380.0 for the iris containers as well as all the other IRIS products<br />
+
+Problem: Management Portal for compute node was not appearing <br />
+Solution: Changing the password of the Management Portal through the webgateway that is accessible<br />
+
+## Unresolved
+
+Here are a list of problems that still needs to be resolved:
+
+1. Mirroring IRIS pods running the latest version of IRIS <br />
+2. Understanding why the SC namespace is not showing up on the data pods <br />
+3. Making sure the SC namespace is showing up in the mirror <br />
+4. Testing the ECP 
+
+
