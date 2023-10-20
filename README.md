@@ -1,18 +1,11 @@
 # Steps to configure SCO EKS Cluster
-Let's set up a basic IRIS cluster in Kubernetes
 
-*Pre-req* This assumes that you already have an InterSystems Container Registry (ICR) account & credentials and have installed IKO
+1. Setting up EKS Cluster (Can be modified to work on other cloud services)
+2. Installing IKO
+3. Modifying IRISCluster and IRISService 
 
+## Setting up EKS Cluster
 
-## Overview
-
-Our application consists of the following components (from inside out)
-
-- InterSystems IRIS for Health with a FHIR server running
-- IRIS Web Gateway to manage the FHIR web traffic
-- Kubernetes service to expose the web gateway via an AWS Network Load Balancer
-- DNS Entry for the NLB
-- SSL keys to secure everything
 
 ## Create a Kubernetes Secret with your InterSystems Container Registry credentials
 
